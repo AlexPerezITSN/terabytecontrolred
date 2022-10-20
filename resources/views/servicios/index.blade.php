@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Servicios en </h3>
+            <h3 class="page__heading">Servicios en {{$location->name}} </h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -17,12 +17,16 @@
                                         <h5>Fibra</h5>
                                         @php
                                         use App\Models\Fiber;
-                                        $cant_fiber = Fiber::count();
+                                        $cant_fiber = Fiber::where('location_id',$location->id)->count();
 
                                         @endphp
                                         <h2 class="text-right"><i class="fa fa-users f-left"></i><span>{{$cant_fiber}}</span></h2>
-                                        <p class="m-b-0 text-right"><a href="/fibers" class="text-white">ver mas</a></p>
-                                        
+                                        <p class="m-b-0 text-right">
+                                            <a href="{{ route('getFiber', $location->id) }}" class="text-white">ver mas</a>
+                                        </p>
+                                        <p class="m-b-0 text-right">
+                                            <a href="{{ route('fibers.create') }}" class="text-white">Crear</a>
+                                        </p>
                                     </div>
                                 </div>  
                             </div> 

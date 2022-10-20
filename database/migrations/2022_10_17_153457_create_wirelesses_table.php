@@ -17,6 +17,7 @@ class CreateWirelessesTable extends Migration
             $table->id();
             $table->text('name');
             $table->string('ip');
+            $table->bigInteger('location_id');
             $table->timestamps();
         });
     }

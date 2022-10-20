@@ -25,9 +25,9 @@ class SuperAdmin extends Seeder
 
         $rol = Role::create(['name'=>'Administrador']);
 
-        $permisos = Permission::pluck('id')->all();
-
-        $rol->syncPermissions($permisos);
+        //$permisos = Permission::pluck('id')->all();
+        
+        //$rol->syncPermissions($permisos);
 
         $usuario->assignRole(['Administrador']);
     }

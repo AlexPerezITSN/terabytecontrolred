@@ -39,6 +39,12 @@
                                             <input type="text" name="ip" class="form-control">
                                         </div>
                                     </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="ip">Location</label>
+                                            <input type="text" name="location_id" class="form-control">
+                                        </div>
+                                    </div>
                                     <button type="submit" class="btn btn-primary">Guadar</button>
                                 </div>
 

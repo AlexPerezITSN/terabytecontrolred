@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fiber;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class FiberController extends Controller
@@ -23,7 +24,7 @@ class FiberController extends Controller
      */
     public function index()
     {
-        $fibers = Fiber::paginate(5);
+        $fibers = Fiber::get()->paginate(5);
         return view('fibers.index', compact('fibers'));
     }
 
@@ -48,6 +49,7 @@ class FiberController extends Controller
         request()->validate([
             'name' => 'required',
             'ip' => 'required',
+            'location_id' => 'required'
         ]);
 
         Fiber::create($request->all());
@@ -73,7 +75,7 @@ class FiberController extends Controller
      */
     public function edit(Fiber $fiber, Request $request)
     {
-        $fiber = Fiber::find($id)->first();
+        //$fiber = Fiber::find($id)->first();
         return view('fibers.editar', compact('fiber'));
     }
 
@@ -106,5 +108,12 @@ class FiberController extends Controller
         $fiber = Fiber::find($id)->first();
         $fiber->delete();
         return redirect()->route('fibers.index');
+    }
+
+    public function getFiberByLocation($id)
+    {
+        $location = Location::find($id)->first();
+        $fibers = Fiber::where('location_id',$id)->paginate(5);
+        return view('fibers.fiber_location', compact('fibers','location'));
     }
 }

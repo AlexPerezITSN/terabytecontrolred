@@ -46,4 +46,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('wireless', WirelessController::class);
     Route::resource('devices', DeviceController::class);
     //Route::resource('servicios', serviciosController::class);
+
+    Route::get('locations/fiber/{id?}', [FiberController::class, 'getFiberByLocation'])->name('getFiber');
 });

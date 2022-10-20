@@ -10,6 +10,8 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
+use Spatie\Permission\Models\Permission;
+use App\Models\model_has_permission;
 
 class UsuarioController extends Controller
 {
@@ -29,6 +31,18 @@ class UsuarioController extends Controller
      */
     public function index()
     {
+        /* $permisos = Permission::get()->all();
+        foreach($permisos as $item){
+            $array = [
+                'permission_id' => $item->id,
+                'model_type' => 'App\Models\User', 
+                'model_id' => 1
+            ];
+            $model_permission = new model_has_permission;
+            $model_permission->fill($array);
+            $model_permission->save();
+        } */
+
         $usuarios = User::paginate(5);
         return view('usuarios.index', compact('usuarios'));
     }

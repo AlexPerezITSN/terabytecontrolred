@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SuperAdmin::class,
             SeederTablePermisos::class,
+            TestSeeder::class
         ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Fiber;
 use App\Models\Wireless;
 use App\Models\Device;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class DeviceController extends Controller
@@ -50,7 +51,8 @@ class DeviceController extends Controller
      */
     public function show($id)
     {
-        return view('servicios.index');
+        $location = Location::find($id)->first();
+        return view('servicios.index', compact('location'));
     }
 
     /**
