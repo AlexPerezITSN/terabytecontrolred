@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+//use Illuminate\Database\Schema\Blueprint::foreign();
 
 class CreateWirelessesTable extends Migration
 {
@@ -19,6 +20,7 @@ class CreateWirelessesTable extends Migration
             $table->string('ip');
             $table->bigInteger('location_id');
             $table->timestamps();
+            //$table->foreign('location_id')->references('id')->on('locations')->onDelete("cascade");
         });
     }
 

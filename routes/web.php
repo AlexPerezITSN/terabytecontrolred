@@ -23,7 +23,7 @@ use App\Http\Controllers\WirelessController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 
@@ -48,6 +48,10 @@ Route::group(['middleware' => ['auth']], function(){
     //Route::resource('servicios', serviciosController::class);
 
     Route::get('locations/fiber/{id?}', [FiberController::class, 'getFiberByLocation'])->name('getFiber');
+    
+    Route::get('locations/fiber/create/{id?}', [FiberController::class, 'createFyberByLocation'])->name('getfiberloc');
+
+    Route::get('locations/fiber/edit/{id?}', [FiberController::class, 'editFiberByLocation'])->name('geteditfiberloc');
 
     Route::get('locations/wireless/{id?}', [WirelessController::class, 'getWirelessByLocation'])->name('getWireless');
 });

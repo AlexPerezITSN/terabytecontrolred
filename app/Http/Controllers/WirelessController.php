@@ -115,6 +115,6 @@ class WirelessController extends Controller
     {
         $location = Location::find($id)->first();
         $wireles = Wireless::where('location_id',$id)->paginate(5);
-        return view('wireless.fiber_location', compact('wireles','location'));
+        return view('wireless.wireless_location', compact('wireles','location'));
     }
 }

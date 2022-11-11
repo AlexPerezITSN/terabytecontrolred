@@ -33,8 +33,10 @@ class FiberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
+        
+        $location = Location::where('id',$id)->first();
         return view('fibers.crear');
     }
 
@@ -52,8 +54,8 @@ class FiberController extends Controller
             'location_id' => 'required'
         ]);
 
-        Fiber::create($request->all());
-        return redirect()->route('fibers.fiber_location');
+        $location = Fiber::create($request->all());
+        return redirect()->route('getFiber', $location->location_id);
     }
 
     /**
@@ -75,8 +77,15 @@ class FiberController extends Controller
      */
     public function edit(Fiber $fiber, Request $request)
     {
-        //$fiber = Fiber::find($id)->first();
-        return view('fibers.editar', compact('fiber'));
+        request()->validate([
+            'name' => 'required',
+            'ip' => 'required',
+            'location_id' => 'required'
+        ]);
+        $fiber = Fiber::where('id', $id)->first();
+        $fiber->update($request->all());
+        $location = Location::where('location_id', $id)->first();
+        return redirect()->route('fibers.editar' , compact('location'));
     }
 
     /**
@@ -93,9 +102,10 @@ class FiberController extends Controller
             'ip' => 'required',
             'location_id' => 'required'
         ]);
-        $fiber = Fiber::find($id)->first();
+        $fiber = Fiber::where('id', $id)->first();
         $fiber->update($request->all());
-        return redirect()->route('fibers.fiber_location');
+        $location = Location::where('location_id', $id)->first();
+        return redirect()->route('fibers.fiber_location' , compact('location'));
     }
 
     /**
@@ -106,17 +116,36 @@ class FiberController extends Controller
      */
     public function destroy(Fiber $fiber)
     {
-        $fiber = Fiber::find($id)->first();
+        $fiber = Fiber::where('id',$id)->first();
         $fiber->delete();
         return redirect()->route('fibers.fiber_location');
     }
 
     public function getFiberByLocation($id)
     {
-        $location = Location::find($id)->first();
+        //$location = Location::find($id)->first();
+        $location = Location::where('id',$id)->first();
         $fibers = Fiber::where('location_id',$id)->paginate(5);
         return view('fibers.fiber_location', compact('fibers','location'));
     }
 
+    public function createFyberByLocation($id)
+    {
+        $location = Location::where('id',$id)->first();
+        return view('fibers.crear', compact('location'));
+    }
     
+
+    public function editFiberByLocation($id)
+    {
+        request()->validate([
+            'name' => 'required',
+            'ip' => 'required',
+            'location_id' => 'required'
+        ]);
+        $fiber = Fiber::where('id', $id)->first();
+        $fiber->update($request->all());
+        $location = Location::where('location_id', $id)->first();
+        return redirect()->route('fibers.editar' , compact('location'));
+    }
 }

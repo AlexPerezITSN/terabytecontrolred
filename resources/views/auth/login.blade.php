@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="card card-primary">
-        <div class="card-header"><h4>Admin Login</h4></div>
+        <div class="card-header"><h4>Inicio de Sesíon</h4></div>
 
         <div class="card-body">
             <form method="POST" action="{{ route('login') }}">
@@ -19,7 +19,7 @@
                     </div>
                 @endif
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">Correo</label>
                     <input aria-describedby="emailHelpBlock" id="email" type="email"
                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
                            placeholder="Enter Email" tabindex="1"
@@ -32,10 +32,10 @@
 
                 <div class="form-group">
                     <div class="d-block">
-                        <label for="password" class="control-label">Password</label>
+                        <label for="password" class="control-label">Contraseña</label>
                         <div class="float-right">
                             <a href="{{ route('password.request') }}" class="text-small">
-                                Forgot Password?
+                                Olvido su Contraseña?
                             </a>
                         </div>
                     </div>

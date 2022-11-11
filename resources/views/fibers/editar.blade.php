@@ -40,6 +40,7 @@
                                     <textarea class="form-control" name="ip" style="height: 100px"> {{ $fiber->ip }} </textarea>
                                     <label for="ip">IP</label>                                
                                 </div>
+                                <input name="location_id" type="hidden" value="{{ $location->id}}"/>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
                             </form>

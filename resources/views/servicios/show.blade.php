@@ -17,15 +17,12 @@
                                         <h5>Fibra</h5>
                                         @php
                                         use App\Models\Fiber;
-                                        $cant_fiber = Fiber::where('location_id',$location->id)->count();
+                                        $cant_fiber = Fiber::where('location_id', $location->id)->count();
 
                                         @endphp
                                         <h2 class="text-right"><i class="fa fa-users f-left"></i><span>{{$cant_fiber}}</span></h2>
                                         <p class="m-b-0 text-right">
                                             <a href="{{ route('getFiber', $location->id) }}" class="text-white">ver mas</a>
-                                        </p>
-                                        <p class="m-b-0 text-right">
-                                            <a href="{{ route('fibers.create') }}" class="text-white">Crear</a>
                                         </p>
                                     </div>
                                 </div>  
@@ -38,7 +35,7 @@
                                         <h5>Inalambrico</h5>
                                         @php
                                         use App\Models\Wireless;
-                                        $cant_wireless = Wireless::count();
+                                        $cant_wireless = Wireless::where('location_id', $location->id)->count();
 
                                         @endphp
                                         <h2 class="text-right"><i class="fa fa-users f-left"></i><span>{{$cant_wireless}}</span></h2>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Location;
+use App\Models\Fiber;
+use App\Models\Wireless;
 
 class LocationController extends Controller
 {
@@ -74,7 +76,7 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        $locations = Location::find($id)->first();
+        $locations = Location::where('id', $id)->first();
         return view('locations.editar', compact('locations'));
 
         //$user = User::find($id);
@@ -110,7 +112,9 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        $location = Location::find($id)->first();
+        $location = Location::where('id', $id)->first();
+        $fiber = Fiber::where('location_id',$id);
+        $fiber->delete();
         $location->delete();
         return redirect()->route('locations.index');
     }

@@ -12,7 +12,7 @@
                         <div class="card-body">
                         
                         @can ('crear-fiber')
-                        <a class="btn btn-warning" href="{{ route('fibers.create') }}">Nuevo</a>
+                        <a class="btn btn-warning" href="{{ route('getfiberloc', $location->id) }}">Nuevo</a>
                         @endcan
 
                         <table class="table table-striped mt-2">
@@ -31,7 +31,7 @@
                                 <td>
                                     <form action="{{ route('fibers.destroy',$fiber->id) }}" method="POST">
                                         @can('editar-fiber')
-                                        <a class="btn btn-info" href="{{ route('fibers.edit',$fiber->id) }}">Editar</a>
+                                        <a class="btn btn-info" href="{{ route('geteditfiberloc',$fiber->id) }}">Editar</a>
                                         @endcan
 
                                         @csrf

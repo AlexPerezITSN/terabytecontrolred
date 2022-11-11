@@ -51,8 +51,9 @@ class DeviceController extends Controller
      */
     public function show($id)
     {
-        $location = Location::find($id)->first();
-        return view('servicios.index', compact('location'));
+        //$location = Location::find($id)->first();
+        $location = Location::where('id',$id)->first();
+        return view('servicios.show', compact('location'));
     }
 
     /**
