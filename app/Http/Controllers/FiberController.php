@@ -25,7 +25,7 @@ class FiberController extends Controller
     public function index()
     {
         $fibers = Fiber::get()->paginate(5);
-        return view('fibers.index', compact('fibers'));
+        return view('fibers.fiber_location', compact('fibers'));
     }
 
     /**
@@ -53,7 +53,7 @@ class FiberController extends Controller
         ]);
 
         Fiber::create($request->all());
-        return redirect()->route('fibers.index');
+        return redirect()->route('fibers.fiber_location');
     }
 
     /**
@@ -64,7 +64,7 @@ class FiberController extends Controller
      */
     public function show(Fiber $fiber)
     {
-        //return view('fiber.index');
+        //return view('fibers.index');
     }
 
     /**
@@ -90,11 +90,12 @@ class FiberController extends Controller
     {
         request()->validate([
             'name' => 'required',
-            'ip' => 'required'
+            'ip' => 'required',
+            'location_id' => 'required'
         ]);
         $fiber = Fiber::find($id)->first();
         $fiber->update($request->all());
-        return redirect()->route('fibers.index');
+        return redirect()->route('fibers.fiber_location');
     }
 
     /**
@@ -107,7 +108,7 @@ class FiberController extends Controller
     {
         $fiber = Fiber::find($id)->first();
         $fiber->delete();
-        return redirect()->route('fibers.index');
+        return redirect()->route('fibers.fiber_location');
     }
 
     public function getFiberByLocation($id)
@@ -116,4 +117,6 @@ class FiberController extends Controller
         $fibers = Fiber::where('location_id',$id)->paginate(5);
         return view('fibers.fiber_location', compact('fibers','location'));
     }
+
+    
 }

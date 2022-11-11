@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Inalambrico en </h3>
+            <h3 class="page__heading">Fibra en {{$location->name}}</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -29,7 +29,7 @@
                                 <td>{{ $wireles->name }}</td>
                                 <td>{{ $wireles->ip }} </td>
                                 <td>
-                                    <form action="{{ route('fibers.destroy',$wireles->id) }}" method="POST">
+                                    <form action="{{ route('wireless.destroy',$wireles->id) }}" method="POST">
                                         @can('editar-wireless')
                                         <a class="btn btn-info" href="{{ route('wireless.edit',$wireles->id) }}">Editar</a>
                                         @endcan
@@ -46,7 +46,7 @@
                                 </tbody>
                         </table>
                         <div class="pagination justify-content-end">
-                                {!! $wireless->links() !!}
+                                {!! $wireles->links() !!}
                             </div>
                         </div>
                     </div>

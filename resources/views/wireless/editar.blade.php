@@ -23,7 +23,7 @@
                         </div>
                         @endif
 
-                        <form action="{{ route('wireless.update', $fiber->id) }}" method="POST">
+                        <form action="{{ route('wireless.update', $wireles->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="row">

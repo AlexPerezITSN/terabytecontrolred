@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wireless;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class WirelessController extends Controller
@@ -48,6 +49,7 @@ class WirelessController extends Controller
         request()->validate([
             'name' => 'required',
             'ip' => 'required',
+            'location_id' => 'required'
         ]);
 
         Wireless::create($request->all());
@@ -61,7 +63,7 @@ class WirelessController extends Controller
      * @param  \App\Models\Wireless  $wireless
      * @return \Illuminate\Http\Response
      */
-    public function show(Wireless $wireless)
+    public function show(Wireless $wireles)
     {
         //return view('wireless.index');
     }
@@ -72,10 +74,10 @@ class WirelessController extends Controller
      * @param  \App\Models\Wireless  $wireless
      * @return \Illuminate\Http\Response
      */
-    public function edit(Wireless $wireless)
+    public function edit(Wireless $wireles)
     {
-        $wireless = Wireless::find($id)->first();
-        return view('wireless.editar', compact('wireless'));
+        $wireles = Wireless::find($id)->first();
+        return view('wireless.editar', compact('wireles'));
     }
 
     /**
@@ -85,13 +87,14 @@ class WirelessController extends Controller
      * @param  \App\Models\Wireless  $wireless
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Wireless $wireless)
+    public function update(Request $request, Wireless $wireles)
     {
         request()->validate([
             'name' => 'required',
-            'ip' => 'required'
+            'ip' => 'required',
+            'location_id' => 'required'
         ]);
-        $wireless = Wireless::find($id)->first();
+        $wireles = Wireless::find($id)->first();
         $fiber->update($request->all());
         return redirect()->route('wireless.index');
     }
@@ -102,10 +105,16 @@ class WirelessController extends Controller
      * @param  \App\Models\Wireless  $wireless
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Wireless $wireless)
+    public function destroy(Wireless $wireles)
     {
-        $wireless = Wireless::find($id)->first();
+        $wireles = Wireless::find($id)->first();
         $fiber->delete();
         return redirect()->route('wireless.index');
+    }
+    public function getWirelessByLocation($id)
+    {
+        $location = Location::find($id)->first();
+        $wireles = Wireless::where('location_id',$id)->paginate(5);
+        return view('wireless.fiber_location', compact('wireles','location'));
     }
 }

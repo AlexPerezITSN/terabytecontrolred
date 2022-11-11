@@ -42,7 +42,7 @@
 
                                         @endphp
                                         <h2 class="text-right"><i class="fa fa-users f-left"></i><span>{{$cant_wireless}}</span></h2>
-                                        <p class="m-b-0 text-right"><a href="/wireless" class="text-white">ver mas</a></p>
+                                        <p class="m-b-0 text-right"><a href="{{ route('getWireless', $location->id) }}" class="text-white">ver mas</a></p>
                                     </div>
                                 </div>  
                             </div>

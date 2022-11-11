@@ -30,14 +30,14 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="name">Nombre:</label>
-                                    <input type="text" name="nombre" class="form-control">
+                                    <input type="text" name="nombre" class="form-control" value="{{ $fiber->name }}">
                                 </div>
                             </div>
                         
                          
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" name="ip" style="height: 100px"></textarea>
+                                    <textarea class="form-control" name="ip" style="height: 100px"> {{ $fiber->ip }} </textarea>
                                     <label for="ip">IP</label>                                
                                 </div>
                                 <button type="submit" class="btn btn-primary">Guardar</button>

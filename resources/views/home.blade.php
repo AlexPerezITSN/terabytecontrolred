@@ -44,8 +44,8 @@
                                     <div class="card-block">
                                         <h5>Locations</h5>
                                         @php
-                                        use App\Models\Lacations;
-                                        $cant_local = User::count();
+                                        use App\Models\Location;
+                                        $cant_local = Location::count();
 
                                         @endphp
                                         <h2 class="text-right"><i class="fa fa-users f-left"></i><span>{{$cant_local}}</span></h2>

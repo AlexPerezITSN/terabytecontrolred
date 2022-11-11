@@ -48,4 +48,6 @@ Route::group(['middleware' => ['auth']], function(){
     //Route::resource('servicios', serviciosController::class);
 
     Route::get('locations/fiber/{id?}', [FiberController::class, 'getFiberByLocation'])->name('getFiber');
+
+    Route::get('locations/wireless/{id?}', [WirelessController::class, 'getWirelessByLocation'])->name('getWireless');
 });
